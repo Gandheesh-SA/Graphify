@@ -5,7 +5,7 @@ import axios from "axios";
 import "../styles/result.css"
 import { GraphContext } from "../context/GraphContext";
 
-const BASE_URL = "srv-d3uf320dl3ps73f3snkg"; 
+const BASE_URL = "https://graphify-dxrj.onrender.com"; 
 
 const DFSPage = () => {
   const { graphData } = useContext(GraphContext);
