@@ -1,0 +1,86 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  background: #f9f9f9;
+}
+
+.top-section,
+.middle-section,
+.bottom-section {
+  border-bottom: 2px solid #ddd;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.top-section {
+  flex: 0 0 45%;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.middle-section {
+  flex: 0 0 45%;
+  background: #f3f6fa;
+  overflow-y: auto;
+}
+
+.bottom-section {
+  flex: 0 0 10%;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  border-bottom: none;
+}
+
+/* Section Headers */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Buttons */
+.action-btn {
+  padding: 8px 15px;
+  background: #007bff;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+}
+.action-btn:hover {
+  background: #0056b3;
+}
+
+.algo-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #28a745;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.algo-btn:hover {
+  background: #1e7e34;
+}
+
+/* Traversal Steps */
+.steps-box {
+  background: #fff;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+.placeholder {
+  font-style: italic;
+  color: #777;
+  margin-top: 20px;
+}
