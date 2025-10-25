@@ -5,6 +5,8 @@ import axios from "axios";
 import "../styles/result.css";
 import { GraphContext } from "../context/GraphContext";
 
+const BASE_URL = "srv-d3uf320dl3ps73f3snkg"; 
+
 const KruskalPage = () => {
   const { graphData } = useContext(GraphContext);
   const [output, setOutput] = useState(null);
@@ -29,7 +31,7 @@ const KruskalPage = () => {
     });
 
     try {
-      const res = await axios.post("http://127.0.0.1:9000/run", {
+      const res = await axios.post(`${BASE_URL}/run`, {
         algorithm: "Kruskal",
         graph: { edges },
         startNode: graphData.nodes[0]?.id

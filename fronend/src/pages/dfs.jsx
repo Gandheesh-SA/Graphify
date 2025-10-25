@@ -5,6 +5,8 @@ import axios from "axios";
 import "../styles/result.css"
 import { GraphContext } from "../context/GraphContext";
 
+const BASE_URL = "srv-d3uf320dl3ps73f3snkg"; 
+
 const DFSPage = () => {
   const { graphData } = useContext(GraphContext);
   const [output, setOutput] = useState([]);
@@ -19,7 +21,7 @@ graphData.edges.forEach((e) => {
   graph[e.target].push(e.source);
 })
 
-    const res = await axios.post("http://127.0.0.1:9000/run", {
+    const res = await axios.post(`${BASE_URL}/run`, {
   algorithm: "DFS",
   graph,
   startNode: graphData.nodes[0]?.id || "A"

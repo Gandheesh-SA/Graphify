@@ -5,6 +5,7 @@ import axios from "axios";
 import "../styles/result.css";
 import { GraphContext } from "../context/GraphContext";
 
+const BASE_URL = "srv-d3uf320dl3ps73f3snkg"; 
 
 const DijkstraPage = () => {
   const { graphData } = useContext(GraphContext);
@@ -52,7 +53,7 @@ const DijkstraPage = () => {
 
     try {
       const startNode = graphData.nodes[0]?.id;
-      const res = await axios.post("http://127.0.0.1:9000/run", {
+      const res = await axios.post(`${BASE_URL}/run`, {
         algorithm: "Dijkstra",
         graph,
         startNode,
