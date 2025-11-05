@@ -6,6 +6,7 @@
   background: #f9f9f9;
 }
 
+/* --- Common Section Styles --- */
 .top-section,
 .middle-section,
 .bottom-section {
@@ -14,6 +15,7 @@
   box-sizing: border-box;
 }
 
+/* --- Top Section --- */
 .top-section {
   flex: 0 0 45%;
   background: #fff;
@@ -21,12 +23,14 @@
   flex-direction: column;
 }
 
+/* --- Middle Section --- */
 .middle-section {
   flex: 0 0 45%;
   background: #f3f6fa;
   overflow-y: auto;
 }
 
+/* --- Bottom Section --- */
 .bottom-section {
   flex: 0 0 10%;
   background: #fff;
@@ -37,14 +41,15 @@
   border-bottom: none;
 }
 
-/* Section Headers */
+/* --- Section Header --- */
 .section-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
-/* Buttons */
+/* --- Buttons --- */
 .action-btn {
   padding: 8px 15px;
   background: #007bff;
@@ -52,6 +57,7 @@
   border-radius: 6px;
   color: #fff;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 .action-btn:hover {
   background: #0056b3;
@@ -71,7 +77,7 @@
   background: #1e7e34;
 }
 
-/* Traversal Steps */
+/* --- Traversal Steps --- */
 .steps-box {
   background: #fff;
   padding: 15px;
@@ -83,4 +89,78 @@
   font-style: italic;
   color: #777;
   margin-top: 20px;
+}
+
+/* ------------------- */
+/* 📱 RESPONSIVE DESIGN */
+/* ------------------- */
+
+/* Small screens (phones) */
+@media (max-width: 768px) {
+  .app-container {
+    height: auto;
+  }
+
+  .top-section,
+  .middle-section,
+  .bottom-section {
+    flex: none;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .top-section {
+    order: 1;
+  }
+  .middle-section {
+    order: 2;
+  }
+  .bottom-section {
+    order: 3;
+    flex-direction: column;
+    padding: 15px;
+    gap: 10px;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .action-btn,
+  .algo-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .steps-box {
+    font-size: 14px;
+  }
+}
+
+/* Medium screens (tablets) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .top-section {
+    flex: 0 0 40%;
+  }
+  .middle-section {
+    flex: 0 0 50%;
+  }
+  .bottom-section {
+    flex: 0 0 10%;
+  }
+
+  .action-btn,
+  .algo-btn {
+    padding: 8px 12px;
+  }
+}
+
+/* Large screens (desktops and above) */
+@media (min-width: 1025px) {
+  .app-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 }
