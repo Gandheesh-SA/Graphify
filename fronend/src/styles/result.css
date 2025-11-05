@@ -1,4 +1,4 @@
-/* bfs.css - premium styling for BFS panel */
+/* 🌐 Base: Premium BFS Visualization Panel */
 .algo-panel {
   height: 50vh;
   padding: 24px;
@@ -8,21 +8,48 @@
   justify-content: center;
   align-items: center;
 
-  /* glass card */
-  background: linear-gradient(180deg, rgba(255,255,255,0.72), rgba(255,255,255,0.60));
+  /* Glassmorphism styling */
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.60));
   backdrop-filter: blur(8px) saturate(120%);
   -webkit-backdrop-filter: blur(8px) saturate(120%);
   border-radius: 16px;
   box-shadow:
-    0 8px 30px rgba(16,24,40,0.15),
-    inset 0 1px 0 rgba(255,255,255,0.6);
-  border: 1px solid rgba(255,255,255,0.6);
-
-  /* subtle lift for large screens */
+    0 8px 30px rgba(16, 24, 40, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   transform: translateZ(0);
+  box-sizing: border-box;
 }
 
-/* Button */
+/* 🧠 Responsive Panel Scaling */
+@media screen and (max-width: 480px) {
+  .algo-panel {
+    height: auto;
+    padding: 16px;
+    gap: 12px;
+    border-radius: 12px;
+    box-shadow:
+      0 6px 18px rgba(16, 24, 40, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .algo-panel {
+    height: 55vh;
+    padding: 20px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .algo-panel {
+    width: 80%;
+    margin: auto;
+    height: 60vh;
+  }
+}
+
+/* 🚀 Button Styling */
 .run-btn {
   appearance: none;
   border: none;
@@ -34,35 +61,37 @@
   transition: transform .18s cubic-bezier(.2,.9,.2,1), box-shadow .18s;
   background: linear-gradient(90deg, #5561f2 0%, #2db1ff 100%);
   color: #fff;
-  box-shadow: 0 8px 20px rgba(45,177,255,0.18);
+  box-shadow: 0 8px 20px rgba(45, 177, 255, 0.18);
 }
 
-/* hover & active states */
+/* Hover & Active States */
 .run-btn:hover {
   transform: translateY(-4px);
-  box-shadow: 0 18px 38px rgba(45,177,255,0.22);
+  box-shadow: 0 18px 38px rgba(45, 177, 255, 0.22);
 }
+
 .run-btn:active {
   transform: translateY(-1px) scale(.995);
 }
 
-/* Disabled look */
+/* Disabled Look */
 .run-btn[disabled] {
   opacity: 0.6;
   cursor: not-allowed;
   box-shadow: none;
 }
 
-/* Output heading */
+/* 🔠 Text & Output Section */
 .traversal-heading {
   margin: 0;
   font-size: 0.95rem;
   color: #0f172a;
   opacity: 0.9;
   font-weight: 600;
+  text-align: center;
 }
 
-/* Traversal pills container */
+/* Pills Container */
 .traversal-output {
   display: flex;
   gap: 10px;
@@ -72,22 +101,81 @@
   margin-top: 6px;
 }
 
-/* Each node shown as a sleek pill */
+/* Node Pills */
 .traversal-pill {
   padding: 8px 12px;
   border-radius: 999px;
   background: linear-gradient(180deg, #ffffff, #f3f6ff);
-  border: 1px solid rgba(16,24,40,0.06);
-  box-shadow: 0 6px 14px rgba(16,24,40,0.06);
+  border: 1px solid rgba(16, 24, 40, 0.06);
+  box-shadow: 0 6px 14px rgba(16, 24, 40, 0.06);
   color: #0f172a;
   font-weight: 600;
   font-size: 0.95rem;
+  transition: transform 0.2s ease, background 0.2s ease;
 }
 
-/* Arrow separator between pills */
+.traversal-pill:hover {
+  transform: scale(1.08);
+  background: linear-gradient(180deg, #eef3ff, #e3e9ff);
+}
+
+/* Arrow Separator */
 .traversal-sep {
   color: #6b7280;
   font-weight: 700;
   margin: 0 4px;
   transform: translateY(-2px);
+}
+
+/* 🧩 RESPONSIVENESS */
+
+/* 📱 Mobile Adjustments */
+@media screen and (max-width: 480px) {
+  .run-btn {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 0.9rem;
+    border-radius: 10px;
+  }
+
+  .traversal-heading {
+    font-size: 0.9rem;
+  }
+
+  .traversal-pill {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+  }
+
+  .traversal-output {
+    gap: 6px;
+  }
+}
+
+/* 📖 Tablets */
+@media screen and (max-width: 768px) {
+  .run-btn {
+    font-size: 0.95rem;
+    padding: 11px 20px;
+  }
+
+  .traversal-pill {
+    font-size: 0.9rem;
+  }
+}
+
+/* 💻 Large Screens */
+@media screen and (min-width: 1024px) {
+  .run-btn {
+    font-size: 1rem;
+    padding: 14px 28px;
+  }
+
+  .traversal-pill {
+    font-size: 1rem;
+  }
+
+  .traversal-heading {
+    font-size: 1rem;
+  }
 }

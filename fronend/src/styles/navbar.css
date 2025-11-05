@@ -1,4 +1,4 @@
-/* navbar.css */
+/* 🌐 Base Navbar Styles */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -9,6 +9,9 @@
   color: #fff;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .navbar h1 {
@@ -18,12 +21,14 @@
   cursor: pointer;
 }
 
-.navbar div {
+/* 🔗 Nav Links Container */
+.nav-links {
   display: flex;
   gap: 1.5rem;
+  align-items: center;
 }
 
-.navbar div a {
+.nav-links a {
   text-decoration: none;
   color: #fff;
   font-weight: 500;
@@ -31,7 +36,7 @@
   transition: all 0.3s ease;
 }
 
-.navbar div a::after {
+.nav-links a::after {
   content: '';
   display: block;
   width: 0%;
@@ -43,10 +48,117 @@
   left: 0;
 }
 
-.navbar div a:hover::after {
+.nav-links a:hover::after {
   width: 100%;
 }
 
-.navbar div a:hover {
+.nav-links a:hover {
   color: #00BFFF;
+}
+
+/* 🍔 Hamburger Menu Icon (Hidden by default) */
+.menu-icon {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  width: 30px;
+  height: 25px;
+  gap: 5px;
+}
+
+.menu-icon span {
+  height: 3px;
+  width: 100%;
+  background-color: #00BFFF;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+/* ✅ Mobile Responsive Behavior */
+
+/* 📱 Small Screens (≤768px) */
+@media screen and (max-width: 768px) {
+  .navbar {
+    padding: 0 1.2rem;
+  }
+
+  .navbar h1 {
+    font-size: 1.5rem;
+  }
+
+  /* Hide desktop links */
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background-color: #0D1B2A;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    transition: height 0.3s ease-in-out;
+  }
+
+  /* Show when active */
+  .nav-links.active {
+    height: 220px;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Show hamburger */
+  .menu-icon {
+    display: flex;
+  }
+
+  /* Animate menu icon when toggled */
+  .menu-icon.open span:nth-child(1) {
+    transform: rotate(45deg) translateY(8px);
+  }
+
+  .menu-icon.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-icon.open span:nth-child(3) {
+    transform: rotate(-45deg) translateY(-8px);
+  }
+
+  /* Adjust link styling for mobile */
+  .nav-links a {
+    font-size: 1.1rem;
+  }
+}
+
+/* 💻 Tablets and Medium Screens (768px - 1024px) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .navbar {
+    padding: 0 1.8rem;
+  }
+
+  .navbar h1 {
+    font-size: 1.6rem;
+  }
+
+  .nav-links a {
+    font-size: 1rem;
+  }
+}
+
+/* 🖥️ Large Screens (≥1025px) */
+@media screen and (min-width: 1025px) {
+  .navbar {
+    padding: 0 3rem;
+  }
+
+  .navbar h1 {
+    font-size: 1.8rem;
+  }
+
+  .nav-links a {
+    font-size: 1rem;
+  }
 }

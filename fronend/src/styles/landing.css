@@ -1,3 +1,4 @@
+/* 🌐 Base Styles */
 .page-container {
   background-color: #f8f9fa; /* Light gray background */
   color: #1f2937; /* Dark gray text */
@@ -8,13 +9,15 @@
   justify-content: center;
   text-align: center;
   padding: 2rem;
+  box-sizing: border-box;
 }
 
 .page-container h1 {
   font-size: 3rem;
   color: #111827; /* Almost black */
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 1rem;
+  line-height: 1.2;
 }
 
 .page-container p {
@@ -22,12 +25,14 @@
   font-size: 1.2rem;
   color: #4b5563; /* Medium gray */
   margin-bottom: 2rem;
+  line-height: 1.6;
+  padding: 0 1rem;
 }
 
 .cta-btn {
-  background: linear-gradient(90deg, #e5e7eb, #f3f4f6); /* White gradient */
+  background: linear-gradient(90deg, #e5e7eb, #f3f4f6);
   border: none;
-  color: #1f2937; /* Dark text for contrast */
+  color: #1f2937;
   padding: 0.9rem 2rem;
   border-radius: 12px;
   font-size: 1rem;
@@ -37,5 +42,72 @@
 
 .cta-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 0 15px rgba(31, 41, 55, 0.2); /* Subtle gray shadow */
+  box-shadow: 0 0 15px rgba(31, 41, 55, 0.2);
+}
+
+/* 🧩 Responsive Design */
+
+/* 📱 Small Screens (Mobile) */
+@media screen and (max-width: 480px) {
+  .page-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .page-container h1 {
+    font-size: 2rem;
+  }
+
+  .page-container p {
+    font-size: 1rem;
+    max-width: 90%;
+  }
+
+  .cta-btn {
+    width: 100%;
+    max-width: 250px;
+    font-size: 0.95rem;
+    padding: 0.8rem 1.2rem;
+  }
+}
+
+/* 📱📖 Medium Screens (Tablets) */
+@media screen and (max-width: 768px) {
+  .page-container {
+    padding: 2rem 1.5rem;
+  }
+
+  .page-container h1 {
+    font-size: 2.4rem;
+  }
+
+  .page-container p {
+    font-size: 1.05rem;
+    max-width: 90%;
+  }
+
+  .cta-btn {
+    font-size: 1rem;
+    padding: 0.9rem 1.8rem;
+  }
+}
+
+/* 💻 Large Screens (Desktop & Above) */
+@media screen and (min-width: 1024px) {
+  .page-container {
+    padding: 4rem 6rem;
+  }
+
+  .page-container h1 {
+    font-size: 3.5rem;
+  }
+
+  .page-container p {
+    font-size: 1.25rem;
+    max-width: 800px;
+  }
+
+  .cta-btn {
+    font-size: 1.1rem;
+    padding: 1rem 2.5rem;
+  }
 }
