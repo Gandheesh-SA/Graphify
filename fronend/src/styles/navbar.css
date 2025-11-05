@@ -14,28 +14,33 @@
   z-index: 1000;
 }
 
+/* ✨ Brand Title */
 .navbar h1 {
   font-size: 1.8rem;
   color: #00BFFF; /* Electric blue */
   letter-spacing: 1px;
   cursor: pointer;
+  text-shadow: 0 0 8px rgba(0, 191, 255, 0.4);
 }
 
 /* 🔗 Nav Links Container */
 .nav-links {
   display: flex;
-  gap: 1.5rem;
+  gap: 1.8rem;
   align-items: center;
 }
 
-.nav-links a {
+/* Links Styling */
+.nav-links a,
+.nav-links a:visited {
   text-decoration: none;
-  color: #fff;
+  color: #ffffff;
   font-weight: 500;
   position: relative;
   transition: all 0.3s ease;
 }
 
+/* Underline Animation */
 .nav-links a::after {
   content: '';
   display: block;
@@ -48,12 +53,14 @@
   left: 0;
 }
 
+/* Hover Animation */
 .nav-links a:hover::after {
   width: 100%;
 }
 
 .nav-links a:hover {
   color: #00BFFF;
+  transform: translateY(-2px);
 }
 
 /* 🍔 Hamburger Menu Icon (Hidden by default) */
@@ -87,7 +94,7 @@
     font-size: 1.5rem;
   }
 
-  /* Hide desktop links */
+  /* Hide desktop links initially */
   .nav-links {
     position: absolute;
     top: 70px;
@@ -102,19 +109,26 @@
     transition: height 0.3s ease-in-out;
   }
 
-  /* Show when active */
+  /* Show menu when active */
   .nav-links.active {
     height: 220px;
     padding-top: 1rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    animation: slideDown 0.3s ease;
   }
 
-  /* Show hamburger */
+  /* Animation for dropdown */
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Show hamburger icon */
   .menu-icon {
     display: flex;
   }
 
-  /* Animate menu icon when toggled */
+  /* Animate hamburger → X when open */
   .menu-icon.open span:nth-child(1) {
     transform: rotate(45deg) translateY(8px);
   }
@@ -127,13 +141,13 @@
     transform: rotate(-45deg) translateY(-8px);
   }
 
-  /* Adjust link styling for mobile */
+  /* Adjust mobile link text */
   .nav-links a {
     font-size: 1.1rem;
   }
 }
 
-/* 💻 Tablets and Medium Screens (768px - 1024px) */
+/* 💻 Tablets (769px - 1024px) */
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   .navbar {
     padding: 0 1.8rem;
@@ -161,4 +175,9 @@
   .nav-links a {
     font-size: 1rem;
   }
+}
+
+/* 🌙 Optional Hover Glow for Links (Visual Accent) */
+.nav-links a:hover {
+  text-shadow: 0 0 10px rgba(0, 191, 255, 0.3);
 }
