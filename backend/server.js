@@ -2,7 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
-
 const bfs = require("./algorithms/bfs");
 const dfs = require("./algorithms/dfs");
 const dijkstra = require("./algorithms/dijkstra");
@@ -10,18 +9,23 @@ const kruskal = require("./algorithms/kruskal");
 
 const app = express();
 
-
+// ✅ Allow local + deployed frontend
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://127.0.0.1:5173"],
+    origin: [
+      "http://localhost:5173",
+      "http://127.0.0.1:5173",
+      "https://graphify-kappa.vercel.app"
+    ],
     methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["Content-Type"],
   })
 );
 
+// ✅ Handle preflight requests
+app.options("*", cors());
 
 app.use(bodyParser.json());
-
 
 app.post("/run", (req, res) => {
   const { algorithm, graph, startNode } = req.body;
@@ -53,7 +57,6 @@ app.post("/run", (req, res) => {
 });
 
 const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () =>
-  console.log("Graphify backend running on http://127.0.0.1:${PORT}")
+app.listen(PORT, () => 
+  console.log(`✅ Graphify backend running on http://127.0.0.1:${PORT}`)
 );
