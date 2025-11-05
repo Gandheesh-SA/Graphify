@@ -6,7 +6,7 @@ import ReactFlow, {
   useNodesState,
   useEdgesState,
   addEdge,
-  MarkerType
+  MarkerType,
 } from "reactflow";
 import "reactflow/dist/style.css";
 import { GraphContext } from "../context/GraphContext";
@@ -18,7 +18,13 @@ const CreateGraph = () => {
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [nodeCount, setNodeCount] = useState(0);
 
+  // Modal states
+  const [showModal, setShowModal] = useState(false);
+  const [pendingConnection, setPendingConnection] = useState(null);
+  const [weight, setWeight] = useState("");
+  const [directed, setDirected] = useState(false);
 
+  // Add Node
   const addNode = () => {
     const id = `node_${nodeCount + 1}`;
     const newNode = {
@@ -31,17 +37,20 @@ const CreateGraph = () => {
     setNodeCount(nodeCount + 1);
   };
 
-
+  // When user connects two nodes → open modal
   const onConnect = useCallback((params) => {
-    let weight = prompt("Enter weight for this edge:", "1");
-    if (weight === null) return;
+    setPendingConnection(params);
+    setShowModal(true);
+  }, []);
 
-    const directed = window.confirm("Make this edge directed? OK = Yes, Cancel = No");
+  // Handle modal submit
+  const handleAddEdge = () => {
+    if (!weight.trim()) return alert("Please enter a weight!");
 
     setEdges((eds) =>
       addEdge(
         {
-          ...params,
+          ...pendingConnection,
           animated: directed,
           markerEnd: directed ? { type: MarkerType.Arrow } : undefined,
           label: weight,
@@ -50,15 +59,22 @@ const CreateGraph = () => {
         eds
       )
     );
-  }, [setEdges]);
+
+    // Reset modal state
+    setShowModal(false);
+    setPendingConnection(null);
+    setWeight("");
+    setDirected(false);
+  };
 
   const saveGraph = () => {
     setGraphData({ nodes, edges });
-    alert("Graph saved!");
+    alert("✅ Graph saved successfully!");
   };
 
   return (
     <div style={{ height: "80vh", width: "100%", position: "relative" }}>
+      {/* Buttons */}
       <div style={{ marginBottom: 10 }}>
         <button
           onClick={addNode}
@@ -72,7 +88,7 @@ const CreateGraph = () => {
             cursor: "pointer",
           }}
         >
-          Add Node
+          ➕ Add Node
         </button>
 
         <button
@@ -86,10 +102,11 @@ const CreateGraph = () => {
             cursor: "pointer",
           }}
         >
-          Save Graph
+          💾 Save Graph
         </button>
       </div>
 
+      {/* ReactFlow Canvas */}
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -102,6 +119,94 @@ const CreateGraph = () => {
         <Controls />
         <Background />
       </ReactFlow>
+
+      {/* Modal */}
+      {showModal && (
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            height: "100%",
+            width: "100%",
+            background: "rgba(0,0,0,0.5)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 10,
+          }}
+        >
+          <div
+            style={{
+              background: "white",
+              padding: "20px",
+              borderRadius: "10px",
+              width: "300px",
+              boxShadow: "0 4px 15px rgba(0,0,0,0.2)",
+            }}
+          >
+            <h3 style={{ textAlign: "center", marginBottom: "10px" }}>
+              Add Edge Details
+            </h3>
+
+            <label>Weight:</label>
+            <input
+              type="number"
+              value={weight}
+              onChange={(e) => setWeight(e.target.value)}
+              placeholder="Enter edge weight"
+              style={{
+                width: "100%",
+                padding: "8px",
+                marginTop: "5px",
+                marginBottom: "10px",
+                border: "1px solid #ccc",
+                borderRadius: "5px",
+              }}
+            />
+
+            <label>
+              <input
+                type="checkbox"
+                checked={directed}
+                onChange={() => setDirected(!directed)}
+                style={{ marginRight: "5px" }}
+              />
+              Directed Edge
+            </label>
+
+            <div style={{ marginTop: "15px", textAlign: "center" }}>
+              <button
+                onClick={handleAddEdge}
+                style={{
+                  backgroundColor: "#4CAF50",
+                  color: "white",
+                  padding: "8px 14px",
+                  border: "none",
+                  borderRadius: "5px",
+                  cursor: "pointer",
+                  marginRight: "10px",
+                }}
+              >
+                Add
+              </button>
+              <button
+                onClick={() => setShowModal(false)}
+                style={{
+                  backgroundColor: "#f44336",
+                  color: "white",
+                  padding: "8px 14px",
+                  border: "none",
+                  borderRadius: "5px",
+                  cursor: "pointer",
+                }}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
